@@ -1,0 +1,16 @@
+.btn {
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+    white-space: normal !important
+}
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis--x path {
+    display: none;
+}

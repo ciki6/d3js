@@ -14,3 +14,9 @@
 .axis--x path {
     display: none;
 }
+
+.text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    font-weight: 100;
+}

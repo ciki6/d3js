@@ -49,11 +49,13 @@
     var formatNumber = d3.format(",");
 
     // transpose data
+    console.log(data);
     data = data[0].map(function(col, i) {
         return data.map(function(row) {
             return row[i]
         })
     });
+    console.log(data);
 
     var layers = stack.keys(d3.range(n))(data),
         yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d[1]; }); }),
@@ -155,11 +157,17 @@
         rect.transition()
             .duration(transitionDuration)
             .delay(function(d, i) { return i * 10; })
-            .attr("x", function(d, i, j) { return x(i) + x.bandwidth() / n * parseInt(this.parentNode.id); })
+            .attr("x", function(d, i, j) {
+                return x(i) + x.bandwidth() / n * parseInt(this.parentNode.id);
+            })
             .attr("width", x.bandwidth() / n)
             .transition()
-            .attr("y", function(d) { return height - (y(d[0]) - y(d[1])); })
-            .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+            .attr("y", function(d) {
+                return height - (y(d[0]) - y(d[1]));
+            })
+            .attr("height", function(d) {
+                return y(d[0]) - y(d[1]);
+            })
             .on("end", setYRecover);
 
         yAxis.tickFormat(formatNumber)

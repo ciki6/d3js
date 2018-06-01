@@ -3,13 +3,6 @@
     word-break: break-all !important;
     white-space: normal !important
 }
-.bar {
-    fill: steelblue;
-}
-
-.bar:hover {
-    fill: #90ee90;
-}
 
 .axis--x path {
     display: none;
@@ -19,4 +12,27 @@
     font-family: 'Courier New', Courier, monospace;
     font-size: 12px;
     font-weight: 100;
+}
+text {
+    font-size: 12px;
+}
+
+.lineGraph path {
+    stroke: steelblue;
+    stroke-width: 2px;
+    fill: none;
+}
+
+.lineGraph .axis path,
+.lineGraph .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+}
+
+.lineGraph .legend {
+    font-size: 16px;
+    font-weight: bold;
+    text-anchor: middle;
 }

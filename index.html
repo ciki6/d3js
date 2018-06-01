@@ -10,21 +10,43 @@
 <div class="container-fluid">
     <div class="row">
         <div class="btn-group-vertical col-sm-3"></div>
-        <div class="barChart col-sm-9"><form>
-            <label><input type="radio" name="mode" value="percent"> Percent</label>
-            <label><input type="radio" name="mode" value="grouped"> Grouped</label>
-            <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
-        </form></div>
+        <div class="col-ms-9">
+            <div class="row">
+                <div class="barChart col-sm-8">
+                    <form>
+                        <label><input type="radio" name="mode" value="percent"> Percent</label>
+                        <label><input type="radio" name="mode" value="grouped"> Grouped</label>
+                        <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
+                    </form>
+                </div>
+                <div class="body col-sm-4"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="lineGraph col-ms-12">
+            <div class="h4">Trend of suicides between 2007 and 2016 based on different age</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="packing col-ms-12"></div>
     </div>
 </div>
 <script src="lib/d3v4.min.js"></script>
 <script src="lib/jQuery.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="js/barChart.js"></script>
+<script src="js/body.js"></script>
+<script src="js/lineGraph.js"></script>
+<script src="js/packing.js"></script>
 <script>
     $(document).ready(function() {
         generateButtons();
         drawBar();
+        generateBody();
+        generateLine();
+        generatePacking();
     });
 
     function generateButtons() {
@@ -36,6 +58,7 @@
         });
         btnGroup.click(function (e) {
             updateBarChart(e.target.innerHTML);
+            updateBody(e.target.innerHTML)
         })
     }
 

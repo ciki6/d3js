@@ -23,8 +23,8 @@ function drawBar() {
             });
         });
 
-        var margin = {top: 100, right: 20, bottom: 500, left: 50},
-            width = 900 - margin.left - margin.right,
+        var margin = {top: 100, right: 5, bottom: 510, left: 70},
+            width = 650 - margin.left - margin.right,
             height = 1000 - margin.top - margin.bottom;
 
         var x = d3.scaleBand()
@@ -45,7 +45,7 @@ function drawBar() {
 
         var color = d3.scaleOrdinal()
             .domain(data.map(d => d.Description))
-            .range(["#1E90FF", "#FF6347"]);
+            .range(["#FF6347", "#1E90FF"]);
 
         var xAxis = d3.axisBottom()
             .scale(x)
@@ -58,10 +58,45 @@ function drawBar() {
             .tickPadding(6);
 
         var svg = d3.select(".barChart").append("svg")
+            .attr('class','barChartSVG')
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        d3.select('.barChartSVG').append('g')
+            .attr('class', 'tip')
+            .append('text')
+            .attr('class', 'tipName')
+            .attr('stroke', '#000')
+            .attr('x', width + margin.right + margin.left)
+            .attr('y', 25)
+            .style('text-anchor', 'end')
+            .text('');
+        d3.select('.barChartSVG').select('.tip')
+            .append('text')
+            .attr('class', 'tipMalesValue')
+            .attr('stroke', '#000')
+            .attr('x', width + margin.right + margin.left)
+            .attr('y', 50)
+            .style('text-anchor', 'end')
+            .text('');
+        d3.select('.barChartSVG').select('.tip')
+            .append('text')
+            .attr('class', 'tipFemalesValue')
+            .attr('stroke', '#000')
+            .attr('x', width + margin.right + margin.left)
+            .attr('y', 75)
+            .style('text-anchor', 'end')
+            .text('');
+        d3.select('.barChartSVG').select('.tip')
+            .append('text')
+            .attr('class', 'tipTotalValue')
+            .attr('stroke', '#000')
+            .attr('x', width + margin.right + margin.left)
+            .attr('y', 100)
+            .style('text-anchor', 'end')
+            .text('');
 
         var layer = svg.selectAll(".layer")
             .data(layers)
@@ -73,10 +108,17 @@ function drawBar() {
         var rect = layer.selectAll("rect")
             .data(function(d) { return d; })
             .enter().append("rect")
+            .attr('class', 'bar')
             .attr("x", function(d) { return x(d.data.Description); })
             .attr("y", height)
             .attr("width", x.bandwidth())
             .attr("height", 0)
+            .attr('name', function(d) {
+                return d.data.Description
+            })
+            .attr('data_value', function(d){
+                return d[1] - d[0]
+            })
             .on("mouseenter", highlightLayer)
             .on("mouseout", restoreLayer);
 
@@ -95,13 +137,16 @@ function drawBar() {
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
             .attr("dy", ".15em")
-            .attr("transform", "rotate(-55)");
+            .attr("transform", "rotate(-55)")
+            .style('font-size', 12);
 
         svg.append("g")
             .attr("class", "y axis")
             .attr("transform", "translate(" + 0 + ",0)")
             .style("font-size", "10px")
-            .call(yAxis);
+            .call(yAxis)
+            .selectAll('text')
+            .style('font-size', 12);
 
         d3.selectAll("input").on("change", change);
 
@@ -136,6 +181,7 @@ function drawBar() {
                     return x2(this.parentNode.id) + i *x.bandwidth();
                 })
                 .attr("width", x.bandwidth() / 2)
+                .style('opacity', 1)
                 .transition()
                 .attr("y", function(d) {
                     return height - (y(d[0]) - y(d[1]));
@@ -164,6 +210,7 @@ function drawBar() {
                 .attr("height", function(d) {
                     return y(d[0]) - y(d[1]); }
                     )
+                .style('opacity', 1)
                 .transition()
                 .attr("x", function(d) { return x(d.data.Description); })
                 .attr("width", x.bandwidth())
@@ -186,6 +233,7 @@ function drawBar() {
                     return y(d[1] / d.data.total); })
                 .attr("height", function(d) {
                     return y(d[0] / d.data.total) - y(d[1] / d.data.total); })
+                .style('opacity', 1)
                 .transition()
                 .attr("x", function(d) { return x(d.data.Description); })
                 .attr("width", x.bandwidth())
@@ -207,10 +255,12 @@ function drawBar() {
 
         function reSetYRecover(){
             for(let i = 0 ; i < 19; i++){
-                if(yRecover[i].length === 4){
-                    yRecover[i][0] = yRecover[i][2];
-                    yRecover[i][1] = yRecover[i][3];
-                    yRecover[i].splice(0, 2);
+                if(yRecover[i]){
+                    if(yRecover[i].length === 4){
+                        yRecover[i][0] = yRecover[i][2];
+                        yRecover[i][1] = yRecover[i][3];
+                        yRecover[i].splice(0, 2);
+                    }
                 }
             }
         }
@@ -230,14 +280,14 @@ function drawBar() {
                 let baseline = yRecover[i][j] + parseFloat(d3.select(this).attr("height"));
                 layerRects.forEach(function(d, i) {
                     yOffset[i] = baseline - (parseFloat(d3.select(d).attr("y")) + parseFloat(d3.select(d).attr("height")));
-                })
+                });
                 rect.transition()
                     .attr("y", function(d, i) {
                         return parseFloat(d3.select(this).attr("y")) + yOffset[i];
                     });
 
                 // Match y axis to bottom of layer
-                y.domain([y.domain()[0] - y.invert(baseline), y.domain()[1] - y.invert(baseline) ])
+                y.domain([y.domain()[0] - y.invert(baseline), y.domain()[1] - y.invert(baseline) ]);
                 svg.selectAll(".y.axis").transition()
                     .call(yAxis);
             }
@@ -254,10 +304,10 @@ function drawBar() {
                     .attr("y", function(d, i) {
                         j = d3.select(this.parentNode).attr("id");
                         return yRecover[i][j];
-                    })
+                    });
 
                 // Restore y axis
-                y.domain(yRecoverDomain)
+                y.domain(yRecoverDomain);
                 svg.selectAll(".y.axis").transition()
                     .call(yAxis);
             }
@@ -269,18 +319,34 @@ function drawBar() {
 
 
 function updateBarChart(name) {
-    d3.select('svg').selectAll('.bar')._groups[0].forEach(obj => {
+    let barChart = d3.select('.barChartSVG');
+    let males = '';
+    let females = '';
+    barChart.selectAll('.bar')._groups[0].forEach(obj => {
         if(d3.select(obj).attr('name') === name){
             d3.select(obj)
                 .transition()
                 .ease(d3.easeBounceInOut)
                 .duration(100)
-                .style('fill', '#90ee90');
+                .style('opacity', 1);
+            if(d3.select(obj.parentNode).attr('id') === 'Males'){
+                males = d3.select(obj).attr('data_value');
+            }else if (d3.select(obj.parentNode).attr('id') === 'Females'){
+                females = d3.select(obj).attr('data_value');
+            }
         }else {
             d3.select(obj)
                 .transition()
                 .duration(100)
-                .style('fill', '#9d9d9d');
+                .style('opacity', 0.3);
         }
     });
+    barChart.select('.tipName')
+        .text('Name:' + name );
+    barChart.select('.tipMalesValue')
+        .text('Males:' + males);
+    barChart.select('.tipFemalesValue')
+        .text('Females:' + females);
+    barChart.select('.tipTotalValue')
+        .text('Total:' + (parseFloat(males) + parseFloat(females)));
 }

@@ -75,22 +75,30 @@ function generateLine() {
                 .style("fill", function() { // Add the colours dynamically
                     return d.color = color(d.key); })
                 .on("click", function(){
-                    // Determine if current line is visible
-                    var active   = d.active ? false : true,
-                        newOpacity = active ? 0 : 1;
-                    // Hide or show the elements based on the ID
-                    d3.select('.lineGraph').select("#tagLine"+d.key.replace(/\s+/g, ''))
-                        .transition().duration(100)
-                        .style("opacity", newOpacity);
-                    d3.select('.lineGraph').selectAll(".tagDot"+d.key.replace(/\s+/g, ''))
-                        .transition().duration(100)
-                        .style("opacity", newOpacity);
-                    // Update whether or not the elements are active
-                    d.active = active;
+                    let line = d3.select('.lineGraph').select("#tagLine"+d.key.replace(/\s+/g, ''));
+                    opacity = line.style('opacity');
+                    line.transition().duration(100)
+                        .style("opacity", opacity === '1' ? 0 : 1);
+                    let dot = d3.select('.lineGraph').selectAll(".tagDot"+d.key.replace(/\s+/g, ''));
+                    dot.transition().duration(100)
+                        .style("opacity", opacity === '1' ? 0 : 1);
                 })
                 .text(d.key);
 
         });
+        svg.append('text')
+            .attr('class', 'clearBtn')
+            .attr('stroke', '#000')
+            .attr('x', width)
+            .style('text-anchor', 'end')
+            .style('font-size', '18px')
+            .text('clear all')
+            .on('click', function() {
+                svg.selectAll('.line')
+                    .style('opacity', 0);
+                svg.selectAll('circle')
+                    .style('opacity', 0)
+            });
 
         // Add the X Axis
         svg.append("g")

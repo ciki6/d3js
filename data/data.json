@@ -1,0 +1,162 @@
+{"data":[
+  {
+    "Males": [
+      {
+        "Description": "Certain infectious and parasitic diseases",
+        "value": 1442
+      },
+      {
+        "Description": "Neoplasms",
+        "value": 26149
+      },
+      {
+        "Description": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism",
+        "value": 233
+      },
+      {
+        "Description": "Endocrine, nutritional and metabolic diseases",
+        "value": 3516
+      },
+      {
+        "Description": "Mental and behavioural disorders",
+        "value": 3794
+      },
+      {
+        "Description": "Diseases of the nervous system",
+        "value": 4122
+      },
+      {
+        "Description": "Diseases of the eye and adnexa",
+        "value": 1
+      },
+      {
+        "Description": "Diseases of the ear and mastoid process",
+        "value": 8
+      },
+      {
+        "Description": "Diseases of the circulatory system",
+        "value": 21722
+      },
+      {
+        "Description": "Diseases of the respiratory system",
+        "value": 7455
+      },
+      {
+        "Description": "Diseases of the digestive system",
+        "value": 2895
+      },
+      {
+        "Description": "Diseases of the skin and subcutaneous tissue",
+        "value": 229
+      },
+      {
+        "Description": "Diseases of the musculoskeletal system and connective tissue",
+        "value": 472
+      },
+      {
+        "Description": "Diseases of the genitourinary system",
+        "value": 1565
+      },
+      {
+        "Description": "Pregnancy, childbirth and the puerperium",
+        "value": 0
+      },
+      {
+        "Description": "Certain conditions originating in the perinatal period",
+        "value": 315
+      },
+      {
+        "Description": "Congenital malformations deformations and chromosomal abnormalities",
+        "value": 327
+      },
+      {
+        "Description": "Symptoms, signs and abnormal clinical and laboratory findings not elsewhere classified",
+        "value": 790
+      },
+      {
+        "Description": "External causes of morbidity and mortality",
+        "value": 6832
+      }
+    ]
+  },
+  {
+    "Females": [
+      {
+        "Description": "Certain infectious and parasitic diseases",
+        "value": 1376
+      },
+      {
+        "Description": "Neoplasms",
+        "value": 20158
+      },
+      {
+        "Description": "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism",
+        "value": 257
+      },
+      {
+        "Description": "Endocrine, nutritional and metabolic diseases",
+        "value": 3234
+      },
+      {
+        "Description": "Mental and behavioural disorders",
+        "value": 6137
+      },
+      {
+        "Description": "Diseases of the nervous system",
+        "value": 4672
+      },
+      {
+        "Description": "Diseases of the eye and adnexa",
+        "value": 5
+      },
+      {
+        "Description": "Diseases of the ear and mastoid process",
+        "value": 4
+      },
+      {
+        "Description": "Diseases of the circulatory system",
+        "value": 22241
+      },
+      {
+        "Description": "Diseases of the respiratory system",
+        "value": 7328
+      },
+      {
+        "Description": "Diseases of the digestive system",
+        "value": 2858
+      },
+      {
+        "Description": "Diseases of the skin and subcutaneous tissue",
+        "value": 303
+      },
+      {
+        "Description": "Diseases of the musculoskeletal system and connective tissue",
+        "value": 899
+      },
+      {
+        "Description": "Diseases of the genitourinary system",
+        "value": 1893
+      },
+      {
+        "Description": "Pregnancy, childbirth and the puerperium",
+        "value": 12
+      },
+      {
+        "Description": "Certain conditions originating in the perinatal period",
+        "value": 235
+      },
+      {
+        "Description": "Congenital malformations deformations and chromosomal abnormalities",
+        "value": 260
+      },
+      {
+        "Description": "Symptoms, signs and abnormal clinical and laboratory findings not elsewhere classified",
+        "value": 861
+      },
+      {
+        "Description": "External causes of morbidity and mortality",
+        "value": 3904
+      }
+    ]
+  }
+]}

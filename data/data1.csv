@@ -1,20 +1,20 @@
-Total,Description
-2818,Certain infectious and parasitic diseases
-46307,Neoplasms
-490,Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism
-6750,Endocrine, nutritional and metabolic diseases
-9931,Mental and behavioural disorders
-8794,Diseases of the nervous system
-6,Diseases of the eye and adnexa
-12,Diseases of the ear and mastoid process
-43963,Diseases of the circulatory system
-14783,Diseases of the respiratory system
-5753,Diseases of the digestive system
-532,Diseases of the skin and subcutaneous tissue
-1371,Diseases of the musculoskeletal system and connective tissue
-3458,Diseases of the genitourinary system
-12,Pregnancy, childbirth and the puerperium
-550,Certain conditions originating in the perinatal period
-587,Congenital malformations, deformations and chromosomal abnormalities
-1651,Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified
-10736,External causes of morbidity and mortality
+Description,Males,Females
+Certain infectious and parasitic diseases,1442,1376
+Neoplasms,26149,20158
+Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism,233,257
+Endocrine nutritional and metabolic diseases,3516,3234
+Mental and behavioural disorders,3794,6137
+Diseases of the nervous system,4122,4672
+Diseases of the eye and adnexa,1,5
+Diseases of the ear and mastoid process,8,4
+Diseases of the circulatory system,21722,22241
+Diseases of the respiratory system,7455,7328
+Diseases of the digestive system,2895,2858
+Diseases of the skin and subcutaneous tissue,229,303
+Diseases of the musculoskeletal system and connective tissue,472,899
+Diseases of the genitourinary system ,1565,1893
+Pregnancy childbirth and the puerperium,0,12
+Certain conditions originating in the perinatal period,315,235
+Congenital malformations deformations and chromosomal abnormalities,327,260
+Symptoms signs and abnormal clinical and laboratory findings not elsewhere classified,790,861
+External causes of morbidity and mortality,6832,3904

@@ -10,36 +10,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="btn-group-vertical col-sm-3"></div>
-        <div class="barChart col-sm-9"></div>
+        <div class="barChart col-sm-9"><form>
+            <label><input type="radio" name="mode" value="percent"> Percent</label>
+            <label><input type="radio" name="mode" value="grouped"> Grouped</label>
+            <label><input type="radio" name="mode" value="stacked" checked> Stacked</label>
+        </form></div>
     </div>
 </div>
-<script src="lib/d3v5.min.js"></script>
+<script src="lib/d3v4.min.js"></script>
 <script src="lib/jQuery.js"></script>
 <script src="lib/bootstrap.min.js"></script>
-<script src="js/bar.js"></script>
+<script src="js/barChart.js"></script>
 <script>
     $(document).ready(function() {
         generateButtons();
-        drawBarChart();
+        drawBar();
     });
 
     function generateButtons() {
         let btnGroup = $('.btn-group-vertical');
-        d3.json('data/diseases.json').then(function(data){
+        d3.json('data/diseases.json', function(data){
             data.forEach(function(obj) {
                 btnGroup.append('<button class="btn btn-outline-primary">'+obj.name+'</button>');
-            });
-            btnGroup.click(function(e){
-                focusBar(e.target.innerHTML);
-                updateData(e.target.innerHTML);
             })
+        });
+        btnGroup.click(function (e) {
+            updateBarChart(e.target.innerHTML);
         })
     }
 
 
-    function updateData(name) {
-        console.log(name);
-    }
 </script>
 </body>
 </html>
